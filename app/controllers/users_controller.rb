@@ -10,6 +10,7 @@ class UsersController < ApplicationController
     
     def show
         @user = User.find(params[:id])
+        @posts = Post.all
     end 
     
     def create
@@ -27,4 +28,9 @@ class UsersController < ApplicationController
         @user = User.find(params[:id])
     end 
     
-end
+    
+    private
+    def users_params
+        params.require(:user).permit(:name, :image)
+    end 
+end 

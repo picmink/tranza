@@ -1,0 +1,6 @@
+<%= form_with model: @posts do |f| %>
+    <%= f.file_field :image, accept: "image/*" %>
+    <%= f.text_field :stone_name %>
+    <%= f.text_area :caption %>
+    <%= f.submit '投稿' %>
+<% end %>

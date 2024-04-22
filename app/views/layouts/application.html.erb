@@ -11,6 +11,23 @@
   </head>
 
   <body>
-    <%= yield %>
+    <%= link_to "トップ"  %>
+      <% if user_signed_in? %>
+           
+            <li class="nav-item">
+              <%= link_to 'ユーザー', users_path %>
+            </li>
+            <li class="nav-item">
+              <%= link_to 'みんなの投稿', posts_path %>
+            </li>
+            <li class="nav-item">
+              <%= link_to "個人設定", edit_user_path(current_user.id) %>
+            </li>
+            <li class="nav-item">
+              <%= link_to "ログアウト", destroy_user_session_path, method: :delete %>
+            </li>
+      <% else %>
+      <% end %>
+      <%= yield %>
   </body>
 </html>
