@@ -19,7 +19,7 @@ class PostsController < ApplicationController
     @posts = Post.new(post_params)
     @posts.user_id = current_user.id
     @posts.save
-    redirect_to user_path
+    redirect_to post_path
   end
 
   def update

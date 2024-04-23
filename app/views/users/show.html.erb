@@ -1,6 +1,6 @@
 <div>
   <% if @user.get_profile_image(250, 250) %>
-    <%= link_to image_tag(@user.get_profile_image(250,250)), edit_user_path(@user) %>
+    <%= link_to image_tag(@user.get_profile_image(250, 250)), edit_user_path(@user) %>
     <h10><%= link_to @user.name, edit_user_path(@user) %></h10>
   <% end %>
  
@@ -10,6 +10,7 @@
             <tr>
               <%= link_to image_tag(posts.get_image(100, 100)), post_path %>
               <%= link_to posts.stone_name, post_path %>
+              <%= posts.caption %>
             </tr>
           <% end %>
         </table>
