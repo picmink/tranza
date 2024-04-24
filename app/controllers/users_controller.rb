@@ -1,5 +1,6 @@
 class UsersController < ApplicationController
     def index
+        @users = User.all
     end
     
     def edit
@@ -15,17 +16,37 @@ class UsersController < ApplicationController
     
     def create
         @post = Post.new(post_params)
-        @post.user_id= current_user.id
-        @post.save
+        if @post.user_id = current_user.id
+           @post.save
+           render post_path
+        else
+           render user_path(current_user.id)
+        end 
         
+        
+    end 
+    
+    def withdrawal
     end 
     
     def update
         @user = User.find(params[:id])
+        if @user.user.id = current_user.id
+           @user = update(user_params)
+           redirect_to user_path(@user)
+        else
+           render user_path(@user)
+        end 
     end 
     
     def destroy
         @user = User.find(params[:id])
+        if @user.user.id = current_user.id
+           @user.destroy
+           redirect_to root_path
+        else
+           render user_path(@user)
+        end 
     end 
     
     

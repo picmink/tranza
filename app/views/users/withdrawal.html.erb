@@ -1,0 +1,4 @@
+<p>本当に退会しますか？</p>
+
+<%= link_to "はい", user_path(current_user.id), method: :delete %>
+<%= link_to "いいえ", edit_user_path(current_user.id) %>

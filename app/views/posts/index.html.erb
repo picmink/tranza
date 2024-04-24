@@ -1,2 +1,6 @@
-<h1>Posts#index</h1>
-<p>Find me in app/views/posts/index.html.erb</p>
+<% @posts.each do |pt| %>
+<table>
+    <%= link_to image_tag(pt.get_image(100, 100)), posts_path(@post) %>
+    <%= link_to pt.stone_name, posts_path(@post) %>
+</table>
+<% end %>
