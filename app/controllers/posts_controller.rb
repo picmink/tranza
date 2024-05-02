@@ -4,8 +4,8 @@ class PostsController < ApplicationController
   end
 
   def index
-    @posts = Post.all
-
+    @search = Post.ransack(params[:q])
+    @posts = @search.result.page(params[:page]).per(10).order("created_at desc")
   end
 
   def show
@@ -20,7 +20,7 @@ class PostsController < ApplicationController
     @posts = Post.new(post_params)
     @posts.user_id = current_user.id
     @posts.save
-    redirect_to post_path
+    redirect_to post_path(@posts)
   end
 
   def update
@@ -31,6 +31,7 @@ class PostsController < ApplicationController
   def destroy
     posts = Post.find(params[:id])
     posts.destroy
+    redirect_to user_path(current_user)
   end
   
   private

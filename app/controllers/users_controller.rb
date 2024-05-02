@@ -1,6 +1,8 @@
 class UsersController < ApplicationController
     def index
         @users = User.all
+        @q = User.ransack(params[:q])
+        @users = @q.result(distinct: true).page(params[:page]).per(10).order("created_at desc")
     end
     
     def edit
@@ -11,7 +13,7 @@ class UsersController < ApplicationController
     
     def show
         @user = User.find(params[:id])
-        @posts = Post.all
+        @posts = @user.posts
     end 
     
     def create
