@@ -14,6 +14,10 @@ class User < ApplicationRecord
      profile_image
   end
           
+  def self.ransackable_attributes(auth_object = nil)
+    ["created_at", "id", "name", "tag_id", "updated_at", "user_id"]
+  end
+  
    has_many :posts, dependent: :destroy
   
 end

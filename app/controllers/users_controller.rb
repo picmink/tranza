@@ -1,8 +1,7 @@
 class UsersController < ApplicationController
     def index
-        @users = User.all
-        @q = User.ransack(params[:q])
-        @users = @q.result(distinct: true).page(params[:page]).per(10).order("created_at desc")
+        @search = User.ransack(params[:q])
+        @users = @search.result.page(params[:page]).per(10).order("created_at desc")
     end
     
     def edit
