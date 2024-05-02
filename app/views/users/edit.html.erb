@@ -1,14 +1,8 @@
-<div>
-   <%= image_tag @user.get_profile_image(250, 250) %>
-  <h10><%=  @user.name %></h10>
-  
-  <h10><b>個人設定</b></h10></br>
-  
-  <%= link_to "ユーザー情報の編集", edit_user_path %></br>
-  <%= link_to "投稿の編集", post_path %></br>
-  <%= link_to "コメントの編集", edit_user_path %></br>
-  <%= link_to "退会", withdrawal_path %></br>
-  
-  
-  
-</div>
+<h2>プロフィール編集</h2>
+<%= form_for model: @user do |user| %>
+  <label for="inputName">Name</label>
+  <%= f.text_field :name, autofocus: true, id:"inputName", placeholder:"名前"%>
+  <label for="inputImage">ProfileImage</label>
+  <%= f.file_field :profile_image, placeholder: "プロフィール画像", accept: "image/*" %>  
+  <%= f.submit "変更を保存" %>
+<% end %>

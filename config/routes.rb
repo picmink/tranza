@@ -4,6 +4,7 @@ Rails.application.routes.draw do
   root to: 'homes#top'
   get 'homes/about' => 'homes#about' ,as: "about"
   get 'users/withdrawal' => 'users#withdrawal' ,as: "withdrawal"
+  get 'users/setting' => 'users#setting' ,as: "setting"
   resources :users, only: [:index, :show, :edit, :create, :update, :destroy]
   resources :posts
    resources :tags

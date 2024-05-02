@@ -6,7 +6,15 @@ class UsersController < ApplicationController
     
     def edit
         @user = User.find(params[:id])
-        if @user.save
+    end 
+    
+    def update
+        @user = User.find(params[:id])
+        if @user.user.id = current_user.id
+           @user = update(user_params)
+           redirect_to user_path(@user)
+        else
+           render setting_path(current_user.id)
         end 
     end 
     
@@ -30,14 +38,8 @@ class UsersController < ApplicationController
     def withdrawal
     end 
     
-    def update
+    def setting
         @user = User.find(params[:id])
-        if @user.user.id = current_user.id
-           @user = update(user_params)
-           redirect_to user_path(@user)
-        else
-           render user_path(@user)
-        end 
     end 
     
     def destroy
@@ -53,6 +55,6 @@ class UsersController < ApplicationController
     
     private
     def users_params
-        params.require(:user).permit(:name, :image)
+        params.require(:user).permit(:name, :profile_image)
     end 
 end 
