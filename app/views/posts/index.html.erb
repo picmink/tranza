@@ -8,14 +8,14 @@
   <%= list.tag_name %>
   <%= "(#{list.posts.count})" %>
 <% end %>
-
+<br>
 <% @posts.each do |post| %>
   <table>
     <tr>
       <%= link_to image_tag(post.get_image(200, 200)), post_path(post) %>
       <%= link_to post.stone_name, post_path(post) %>
-      <%= post.tags.map(&:tag_name).join(',') %>
-    </tr>
+      <%= post.tags.map(&:tag_name).join('　') %>
+    </tr><br>
   </table>
 <% end %>
 <%= paginate @posts %>

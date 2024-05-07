@@ -31,8 +31,9 @@ class PostsController < ApplicationController
   end
 
   def update
-    @posts = Post.find(params[:id])
-    
+    posts = Post.find(params[:id])
+    posts.update(post_params)
+    resirect_to post_path(posts.id)
     
   end
 

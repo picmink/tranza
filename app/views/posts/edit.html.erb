@@ -1,2 +1,10 @@
-<h1>Posts#edit</h1>
-<p>Find me in app/views/posts/edit.html.erb</p>
+<h5>編集画面です。</h5>
+<%= form_with model: @posts do |post| %>
+    <h10>天然石・宝石の名前</h10>
+    <%= post.text_field :stone_name %>
+    <h10>説明文</h10>
+    <%= post.text_area :caption %>
+    
+    <%= post.submit '編集完了' %>
+
+<% end %>

@@ -6,6 +6,10 @@ Rails.application.routes.draw do
   get 'users/withdrawal' => 'users#withdrawal' ,as: "withdrawal"
   get 'users/setting' => 'users#setting' ,as: "setting"
   resources :users, only: [:index, :show, :edit, :create, :update, :destroy]
-  resources :posts
+  resources :posts do
+      member do 
+          post 'edit'
+      end 
+  end
    resources :tags
 end
