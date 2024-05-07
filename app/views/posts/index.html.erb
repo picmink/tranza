@@ -3,10 +3,19 @@
   <%= f.submit '検索' %>
 <% end %>
 
+
+<% @tags.each do |list| %>
+  <%= list.tag_name %>
+  <%= "(#{list.posts.count})" %>
+<% end %>
+
 <% @posts.each do |post| %>
   <table>
-    <%= link_to image_tag(post.get_image(200, 200)), post_path(post) %>
-    <%= link_to post.stone_name, post_path(post) %>
+    <tr>
+      <%= link_to image_tag(post.get_image(200, 200)), post_path(post) %>
+      <%= link_to post.stone_name, post_path(post) %>
+      <%= post.tags.map(&:tag_name).join(',') %>
+    </tr>
   </table>
 <% end %>
 <%= paginate @posts %>

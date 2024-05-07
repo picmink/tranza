@@ -6,6 +6,7 @@ class PostsController < ApplicationController
   def index
     @search = Post.ransack(params[:q])
     @posts = @search.result.page(params[:page]).per(10).order("created_at desc")
+    @tags = Tag.all
   end
 
   def show
@@ -20,12 +21,18 @@ class PostsController < ApplicationController
   def create
     @posts = Post.new(post_params)
     @posts.user_id = current_user.id
-    @posts.save
-    redirect_to post_path(@posts)
+    tags = params[:post][:tag].split()
+    if @posts.save
+      @posts.save_tag(tags)
+      redirect_to post_path(@posts)
+    else
+      render:new
+    end
   end
 
   def update
     @posts = Post.find(params[:id])
+    
     
   end
 
@@ -40,4 +47,6 @@ class PostsController < ApplicationController
   def post_params
     params.require(:post).permit(:stone_name, :image, :caption)
   end 
+  
+ 
 end
