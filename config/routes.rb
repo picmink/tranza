@@ -5,7 +5,11 @@ Rails.application.routes.draw do
   get 'homes/about' => 'homes#about' ,as: "about"
   get 'users/withdrawal' => 'users#withdrawal' ,as: "withdrawal"
   get 'users/setting' => 'users#setting' ,as: "setting"
-  resources :users, only: [:index, :show, :edit, :create, :update, :destroy]
+  
+  resources :users, expect: [:new] do
+    resource :favorites, only: [:create, :destroy]
+  end 
+  
   resources :posts do
       member do 
           post 'edit'

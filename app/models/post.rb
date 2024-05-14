@@ -3,9 +3,14 @@ class Post < ApplicationRecord
     belongs_to :user
     has_many :post_tags, dependent: :destroy
     has_many :tags, through: :post_tags
+    has_many :favorites, dependent: :destroy
     
     def get_image(width, height)
         image.variant(resize_to_limit: [width, height]).processed
+    end 
+    
+    def favoritee_by(user)
+        favorites.where(user_id: user).exists?
     end 
     
     def self.ransackable_attributes(auth_object = nil)
