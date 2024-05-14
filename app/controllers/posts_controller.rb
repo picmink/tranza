@@ -16,6 +16,7 @@ class PostsController < ApplicationController
 
   def edit
     @posts = Post.find(params[:id])
+    @tags = @posts.tags.pluck(:tag_name).join(",")
   end
 
   def create
@@ -26,16 +27,20 @@ class PostsController < ApplicationController
       @posts.save_tag(tags)
       redirect_to post_path(@posts)
     else
-      render:new
+      render :new
     end
   end
 
   def update
     posts = Post.find(params[:id])
-    posts.update(post_params)
-    resirect_to post_path(posts.id)
-    
-  end
+    tags = params[:post][:tag_ids].split(',')
+    if posts.update(post_params)
+      posts.update_tags(tags)
+      redirect_to post_path(posts.id)
+    else
+      render :edit
+    end 
+  end 
 
   def destroy
     posts = Post.find(params[:id])

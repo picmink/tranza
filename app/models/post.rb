@@ -26,4 +26,35 @@ class Post < ApplicationRecord
             self.tags << new_post_tag
         end 
     end 
+    
+    def save_tags(tags) #
+        tags.each do |new_tags|
+            self.tags.find_or_create_by(tag_name: new_tags)
+        end 
+    end 
+    
+    def update_tags(latest_tags)#タグ付けの更新用メソッド
+        if self.tags.empty?
+            latest_tags.each do |latest_tag|
+                self.tags.find_or_create_by(tag_name: latest_tag)
+            end
+        elsif latest_tags.empty?
+            self.tagas.each do |tag|
+                self.tags.delete(tag)
+            end
+        else
+            current_tags = self.tags.pluck(:tag_name)
+            old_tags = current_tags - latest_tags
+            new_tags = latest_tags - current_tags
+            
+            old_tags.each do |old_tag|
+                tag = self.tags.find_by(tag_name: old_tag)
+                self.tags.delete(tag) if tag.present?
+            end 
+            
+            new_tags.each do |new_tag|
+                self.tags.find_or_create_by(tag_name: new_tag)
+            end 
+        end 
+    end
 end

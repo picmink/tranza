@@ -4,6 +4,9 @@
     <%= post.text_field :stone_name %>
     <h10>説明文</h10>
     <%= post.text_area :caption %>
+    <%= post.text_field :tag_ids,value: @tags,\
+    placeholder: "複数つけるには','(半角)で区切ってください。" %>
+
     
     <%= post.submit '編集完了' %>
 

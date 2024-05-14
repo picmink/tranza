@@ -8,8 +8,8 @@
         <table>
           <% @posts.each do |post| %>
             <tr>
-              <%= link_to image_tag(post.get_image(150, 150)), post_path(post.user_id) %>
-              <%= link_to post.stone_name, post_path(post.user_id) %>
+              <%= link_to image_tag(post.get_image(150, 150)), post_path(post.id) %>
+              <%= link_to post.stone_name, post_path(post.id) %>
               <%= post.caption %>
             </tr>
           <% end %>

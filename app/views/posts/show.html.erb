@@ -2,7 +2,7 @@
     <%= image_tag(@posts.get_image(100,100)) %>
     <%= @posts.stone_name %>
     <%= @posts.caption %>
-    <%= @posts.tags.map(&:tag_name).join('　') %>
+    <p><%= @posts.tags.map(&:tag_name).join('　') %></p>
     
     <%= link_to "編集", edit_post_path(@posts.id), method: :pacth %>
     <%= link_to "削除", post_path(@posts.id), method: :delete, "data-confirm" => "本当に削除しますか？" %>
