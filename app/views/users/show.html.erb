@@ -2,19 +2,32 @@
 
     <%= link_to image_tag(@user.get_profile_image(200, 200)), edit_user_path(@user) %>
     <h10><%= link_to @user.name, edit_user_path(@user) %></h10>
+    
+      <% if @user.favorited_by?(current_user) %>
+        <%= link_to user_favorites_path(@user), method: :delete, class: "nav-link" do %>
+        <i class="fa-solid fa-star"></i>
+        <% end %>
+      <% else %>
+        <%= link_to user_favorites_path(@user), method: :post, class: "nav-link" do %>
+        <i class="fa-regular fa-star"></i>
+        <% end %>
+      <% end %>
+    <br>
 
  
     <h8>投稿一覧</h8>
         <table>
           <% @posts.each do |post| %>
             <tr>
-              <%= link_to image_tag(post.get_image(150, 150)), post_path(post.id) %>
-              <%= link_to post.stone_name, post_path(post.id) %>
-              <%= post.caption %>
+              <td><%= link_to image_tag(post.get_image(150, 150)), post_path(post.id) %></td>
+              <td><%= link_to post.stone_name, post_path(post.id) %></td>
+              <td><%= post.caption %></td>
             </tr>
           <% end %>
         </table>
-    <%= link_to "投稿する", new_post_path %>
+
+
+    <%= link_to "投稿する", new_post_path %><br>
     
     <h8>コメント一覧</h8>
         <table>
