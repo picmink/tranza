@@ -2,8 +2,8 @@ class FavoritesController < ApplicationController
     before_action :authenticate_user!
     
     def create
-        @user = User.find(params[:user_id])
-        @favorite = @user.favorites.new(user_id: current_user.id)
+        @post = Post.find(params[:post_id])
+        @favorite = @post.favorites.new(user_id: current_user.id)
         if @favorite.save
             redirect_to request.referer
         else
@@ -12,10 +12,10 @@ class FavoritesController < ApplicationController
     end 
     
     def destroy
-        @user = User.find(params[:user_id])
-        @favorite = @user.favorites.find_by(user_id: current_user.id)
+        @post = Post.find(params[:post_id])
+        @favorite = @post.favorites.find_by(user_id: current_user.id)
         if @favorite.present?
-            @favorite.destory
+            @favorite.delete
             redirect_to request.referer
         else 
             redirect_to request.referer

@@ -6,5 +6,34 @@
     
     <%= link_to "編集", edit_post_path(@posts.id), method: :pacth %>
     <%= link_to "削除", post_path(@posts.id), method: :delete, "data-confirm" => "本当に削除しますか？" %>
+    
+    
+    <% if @posts.favorited_by?(current_user) %>
+        <%= link_to post_favorites_path(@posts), method: :delete, class: "nav-link" do %>
+        <i class="fa-solid fa-star"></i>
+        <% end %>
+      <% else %>
+        <%= link_to post_favorites_path(@posts), method: :post, class: "nav-link" do %>
+        <i class="fa-regular fa-star"></i>
+        <% end %>
+    <% end %>
+    
+    
+    <p>コメント数:<%= @posts.comment_count %>件</p>
+    <%= @posts.comments.each do |comments| %>
+        <p><%= image_tag comments.user.get_profile_image(50,50) %></p>
+        <%= comments.user.name %>
+        <%= comments.created_at.strftime('%Y/%m/%d') %>
+        <%= comments.comment %>
+        <%= image_tag comments.comment_image(40, 40) %>
+    <% end %>
+    <div>
+        <%= form_with model: [@posts, @comment] do |f| %>
+            <%= f.text_area :comment, placdholder: "コメント" %>
+            <%= f.file_field :image, accept: "image/*" %>
+            <%= f.submit "送信"%>
+        <% end %>
+    </div>
+    
 </div>
 

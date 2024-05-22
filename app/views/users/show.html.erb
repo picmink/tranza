@@ -3,15 +3,7 @@
     <%= link_to image_tag(@user.get_profile_image(200, 200)), edit_user_path(@user) %>
     <h10><%= link_to @user.name, edit_user_path(@user) %></h10>
     
-      <% if @user.favorited_by?(current_user) %>
-        <%= link_to user_favorites_path(@user), method: :delete, class: "nav-link" do %>
-        <i class="fa-solid fa-star"></i>
-        <% end %>
-      <% else %>
-        <%= link_to user_favorites_path(@user), method: :post, class: "nav-link" do %>
-        <i class="fa-regular fa-star"></i>
-        <% end %>
-      <% end %>
+      
     <br>
 
  

@@ -5,12 +5,11 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable
          
   has_one_attached :profile_image
-  has_many :posts, dependent: :destroy
+  has_many :post, dependent: :destroy
   has_many :favorites, dependent: :destroy
+  has_many :comments, dependent: :destroy
   
-  def favorited_by?(user)
-    favorites.exists?(user_id: user.id)
-  end 
+ 
   
   def get_profile_image(width, height)
       unless profile_image.attached?
