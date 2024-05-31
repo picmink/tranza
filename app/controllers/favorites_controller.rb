@@ -15,7 +15,7 @@ class FavoritesController < ApplicationController
         @post = Post.find(params[:post_id])
         @favorite = @post.favorites.find_by(user_id: current_user.id)
         if @favorite.present?
-            @favorite.delete
+            @favorite.destroy
             redirect_to request.referer
         else 
             redirect_to request.referer

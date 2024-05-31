@@ -25,12 +25,11 @@
         <%= comments.user.name %>
         <%= comments.created_at.strftime('%Y/%m/%d') %><br>
         <%= comments.comment %>
-        <%= image_tag comments.comment_image(40, 40) %>
-    <% end %>
+        <%= link_to "削除", post_comment_path(comments), method: :delete,  "data-confirm" => "本当に削除しますか？" %>
+    <% end %><br>
     <div>
         <%= form_with model: [@posts, @comment] do |f| %>
-            <%= f.text_area :comment, placdholder: "コメント" %>
-            <%= f.file_field :image, accept: "image/*" %>
+            <%= f.text_area :comment, placeholder: "コメント" %><br>
             <%= f.submit "送信"%>
         <% end %>
     </div>

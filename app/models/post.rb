@@ -68,4 +68,8 @@ class Post < ApplicationRecord
             end 
         end 
     end
+    
+    validates :stone_name, presence: true
+    validates :caption, presence: true
+    validates :image, presence: true
 end

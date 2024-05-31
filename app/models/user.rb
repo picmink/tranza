@@ -5,7 +5,7 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable
          
   has_one_attached :profile_image
-  has_many :post, dependent: :destroy
+  has_many :posts, dependent: :destroy
   has_many :favorites, dependent: :destroy
   has_many :comments, dependent: :destroy
   
@@ -23,6 +23,6 @@ class User < ApplicationRecord
     ["created_at", "id", "name", "tag_id", "updated_at", "user_id"]
   end
   
-   has_many :posts, dependent: :destroy
+
   
 end

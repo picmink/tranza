@@ -1,4 +1,16 @@
+<h3>投稿画面</h3>
+
+<% if @posts.errors.any? %>
+    <%= @posts.errors.count %>件のエラーが発生しました
+    <ul class="list-group">
+        <% @posts.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+        <% end %>
+    </ul>
+<% end %>
+
 <%= form_with model: @posts do |f| %>
+    <%= f.label :image, "画像" %>
     <%= f.file_field :image, accept: "image/*" %>
     <%= f.label :stone_name, "天然石名・宝石名" %>
     <%= f.text_field :stone_name %>
