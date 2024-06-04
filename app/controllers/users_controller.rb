@@ -5,11 +5,18 @@ class UsersController < ApplicationController
     end
     
     def edit
+        user = User.find(params[:id])
+        unless user.id == current_user.id
+            redirect_to user_path(user) 
+        end 
         @user = User.find(params[:id])
     end 
     
     def update
         user = User.find(params[:id])
+        unless user.id == current_user.id
+            render setting_path(current_user.id)
+        end 
         if user.id = current_user.id
            user.update(user_params)
            redirect_to user_path(user)
@@ -25,6 +32,10 @@ class UsersController < ApplicationController
     
     def create
         @post = Post.new(post_params)
+        user = User.find(params[:id])
+        unless user.id == current_user.id
+            render user_path(current_user.id)
+        end 
         if @post.user_id = current_user.id
            @post.save
            render post_path
@@ -44,6 +55,9 @@ class UsersController < ApplicationController
     
     def destroy
         @user = User.find(params[:id])
+        unless @user.id == current_user.id
+            render user_path(@user)
+        end 
         if @user.user.id = current_user.id
            @user.destroy
            redirect_to root_path

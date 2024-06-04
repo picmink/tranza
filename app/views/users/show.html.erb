@@ -23,11 +23,11 @@
     
     <h8>コメント一覧</h8>
         <table>
-          <% @posts.each do |comment| %>
+          <% @posts.each do |comments| %>
             <tr>
-              <td><%= link_to image_tag(comment.get_image(150, 150)), post_path(comment.id) %></td>
-              <td><%= link_to comment.stone_name, post_path(comment.id) %></td>
-              <td><%= comment.comments.comment %></td>
+              <td><%= link_to image_tag(comments.get_image(150, 150)), post_path(comments.id) %></td>
+              <td><%= link_to comments.stone_name, post_path(comments.id) %></td>
+              <td><%#= comments.comment %></td>
             </tr>
           <% end %>
         </table>
