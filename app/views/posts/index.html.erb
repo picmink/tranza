@@ -10,7 +10,7 @@
 
 
 <% @tags.each do |list| %>
-  <%= link_to list.tag_name, tags_index_path %>
+  <%= link_to list.tag_name, post_tag_path(list.post_ids, id: list.id) %>
   <%= "(#{list.posts.count})" %>
 <% end %>
 <br>

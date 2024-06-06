@@ -25,9 +25,9 @@ Rails.application.routes.draw do
       end 
       resource :favorites, only: [:create, :destroy]
       resources :comments, only: [:new, :index, :create, :update, :destroy]
+      resources :tags, only: [:show]
   end
   
   
-   resources :tags
-   get 'tags/index' => 'tags#index' ,as: "tags_index"
+  
 end

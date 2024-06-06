@@ -1,6 +1,6 @@
 class TagsController < ApplicationController
-    def index
-        @tags = Tag.find(params[:id])
-        @posts = @tags.posts(posts.id)
+    def show
+        @tag = Tag.find(params[:id])
+        @posts = @tag.posts
     end 
 end
