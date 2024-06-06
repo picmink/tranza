@@ -29,4 +29,5 @@ Rails.application.routes.draw do
   
   
    resources :tags
+   get 'tags/index' => 'tags#index' ,as: "tags_index"
 end

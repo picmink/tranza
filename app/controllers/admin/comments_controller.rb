@@ -2,7 +2,7 @@ class Admin::CommentsController < ApplicationController
     before_action :authenticate_admin!
     def index 
         @users = User.find(params[:id])
-        @comment = @user.comment(params[comment.id])
+        @comment = @user.comment(comment.id)
     end 
     
     def destroy

@@ -1,4 +1,14 @@
 class UsersController < ApplicationController
+    before_action :ensure_normal_user, only: :destroy
+
+
+    def ensure_normal_user
+        if resource.email == 'guest@example.com'
+          redirect_to posts_path, alert: 'ゲストユーザーは削除できません。'
+        end
+    end
+    
+    
     def index
         @search = User.ransack(params[:q])
         @users = @search.result.page(params[:page]).per(10).order("created_at desc")

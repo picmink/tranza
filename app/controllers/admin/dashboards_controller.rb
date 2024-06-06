@@ -3,6 +3,6 @@ class Admin::DashboardsController < ApplicationController
     before_action :authenticate_admin!
     def index
         @users = User.all
-        @comments = @users.comment(params[comment.id])
+        @comments = @users.comment(comment.id)
     end
 end

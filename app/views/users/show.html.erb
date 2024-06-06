@@ -27,7 +27,7 @@
             <tr>
               <td><%= link_to image_tag(comments.get_image(150, 150)), post_path(comments.id) %></td>
               <td><%= link_to comments.stone_name, post_path(comments.id) %></td>
-              <td><%#= comments.comment %></td>
+              <td><%= comments.caption %></td>
             </tr>
           <% end %>
         </table>
