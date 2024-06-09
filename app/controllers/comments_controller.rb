@@ -1,4 +1,13 @@
 class CommentsController < ApplicationController
+    before_action :guest_check
+    
+    
+    def guest_check
+        if current_user && current_user.email  == 'guest@example.com'
+          redirect_to posts_path, notice: "この機能を利用するには会員登録が必要です。"
+        end
+    end
+    
     def create
         post = Post.find(params[:post_id])
         comment = current_user.comments.new(comment_params)
