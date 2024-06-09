@@ -1,9 +1,19 @@
-<h1>Welcome to トランザ</h1>
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <img src="/app/assets/images/small-minerals4.jpg" alt="" height="300">
+            <h1>Welcome to Tranza(トランザ)</h1>
+        </div>
+        
+        
+    </div>
+</div>
 
-<p><%= link_to "アバウトページはこちらです。", about_path %></p>
+
+<p><%= link_to "アバウトページはこちらです。", about_path, class:"btn btn-outline-info btn-sm" %></p>
 <h4>会員の方はこちらからログインをお願いします。</h4>
-<%= link_to "会員登録はこちら", new_user_registration_path %>
+<%= link_to "会員登録はこちら", new_user_registration_path, class:"btn btn-success" %>
 <h4>会員登録をしていない方はこちらから会員登録をお願いします。</h4>
-<%= link_to "ログイン", user_session_path %>
+<%= link_to "ログイン", user_session_path, class:"btn btn-info" %>
 <h4>ゲストの方はこちらからです。</h4>
-<%= link_to "ゲストログイン", guest_sign_in_path, method: :post  %>
+<%= link_to "ゲストログイン", guest_sign_in_path, method: :post, class:"btn btn-secondary"  %>

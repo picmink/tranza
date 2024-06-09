@@ -8,11 +8,10 @@ class CommentsController < ApplicationController
     end 
     
     def destroy
-        @user = User.find(params[:id])
-        comment = Comment.find(params[:id])
-        if @user.id == current_user.id
-            comment.destroy
-            redirect_to post_path(params[:post_id])
+        @comment = Comment.find(params[:id])
+        if @comment.user.id == current_user.id
+            @comment.destroy
+            redirect_to post_path(params[:post_id]), notice: "コメントを削除しました。"
         else
             render :show
         end 

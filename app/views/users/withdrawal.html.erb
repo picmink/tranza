@@ -1,4 +1,5 @@
+<h3>退会お手続き</h3>
 <p>本当に退会しますか？</p>
 
-<%= link_to "はい", user_path(current_user.id), method: :delete %>
+<%= link_to "はい", user_withdrawal_path(@user), method: :patch, { confirm: "本当に退会しますか？"} %>
 <%= link_to "いいえ", edit_user_path(current_user.id) %>

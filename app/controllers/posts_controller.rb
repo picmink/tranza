@@ -1,4 +1,12 @@
 class PostsController < ApplicationController
+  before_action :guest_check, only: [:new, :edit, :create, :update, :destroy]
+  
+  def guest_check
+        if resource.email == 'guest@example.com'
+          redirect_to posts_path, notice: "この機能を利用するには会員登録が必要です。"
+        end
+  end
+  
   def new
     @posts = Post.new
   end

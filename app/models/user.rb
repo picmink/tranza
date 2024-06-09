@@ -25,9 +25,15 @@ class User < ApplicationRecord
   
 
   def self.guest
-    find_or_create_by!(email: 'guest@example.com') do |user|
-      user.passward = SecureRamdom.urlsafe_base64
+    find_or_create_by!(email: 'guest@example.com') do |guest|
+      guest.passward = SecureRamdom.urlsafe_base64
+      user.name = "ゲスト"
+      user.is_deleted = false
     end
   end
+  
+  # def active_for_authentication?
+  #   super && (is_deleted == false)
+  # end
   
 end

@@ -1,8 +1,9 @@
-<div>
-    <%= image_tag(@posts.get_image(100,100)) %>
-    <%= @posts.stone_name %>
+<div class="container bg-primary-subtle">
+    <div class="row-5">
+    <%= image_tag(@posts.get_image(300,300)) %>
+    <strong><%= @posts.stone_name %></strong>
     <%= @posts.caption %>
-    <p><%= @posts.tags.map(&:tag_name).join('　') %></p>
+    <div class="p-4"><%= @posts.tags.map(&:tag_name).join(' , ') %></div>
     
     <%= link_to "編集", edit_post_path(@posts.id), method: :pacth %>
     <%= link_to "削除", post_path(@posts.id), method: :delete, "data-confirm" => "本当に削除しますか？" %>
@@ -25,7 +26,12 @@
         <%= comments.user.name %>
         <%= comments.created_at.strftime('%Y/%m/%d') %><br>
         <%= comments.comment %>
-        <%= link_to "削除", post_comment_path(comments), method: :delete,  "data-confirm" => "本当に削除しますか？" %>
+        
+        <% if comments.user.id == current_user.id %>
+            <%= link_to "削除", post_comment_path(comments.post_id, comments), method: :delete,  "data-confirm" => "本当に削除しますか？" %>
+        <% else %>
+        <% end %>
+        
     <% end %><br>
     <div>
         <%= form_with model: [@posts, @comment] do |f| %>
@@ -33,6 +39,9 @@
             <%= f.submit "送信"%>
         <% end %>
     </div>
-    
+    </div>
 </div>
+    
+    
+
 

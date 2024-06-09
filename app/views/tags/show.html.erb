@@ -5,7 +5,7 @@
     <tr>
         <td><%= link_to image_tag(tag_post.get_image(200, 200)), post_path(tag_post) %></td>
         <td><%= link_to tag_post.stone_name, post_path(tag_post) %></td>
-        <td><%= link_to tag_post.caption %></td>
+        <td><%= tag_post.caption %></td>
     </tr>
   <% end %>
 </table>

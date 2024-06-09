@@ -1,5 +1,7 @@
 class UsersController < ApplicationController
     before_action :ensure_normal_user, only: :destroy
+    before_action :guest_check, only: [:edit]
+    before_action :is_matching_login_user, only: [:edit, :update, :withdrawal, :destroy]
 
 
     def ensure_normal_user
@@ -8,6 +10,12 @@ class UsersController < ApplicationController
         end
     end
     
+    def guest_check
+        if resource.email == 'guest@example.com'
+          redirect_to posts_path, notice: "この機能を利用するには会員登録が必要です。"
+        end
+    end 
+    
     
     def index
         @search = User.ransack(params[:q])
@@ -15,9 +23,9 @@ class UsersController < ApplicationController
     end
     
     def edit
-        user = User.find(params[:id])
-        unless user.id == current_user.id
-            redirect_to user_path(user) 
+        @user = User.find(params[:id])
+        unless @user.id == current_user.id
+            redirect_to user_path(@user) 
         end 
         @user = User.find(params[:id])
     end 
@@ -57,10 +65,16 @@ class UsersController < ApplicationController
     end 
     
     def withdrawal
+        @user = User.find(params[:id])
+        @user.update(is_deleted: true)
+        reset_session
+        flash[:notice] = "退会処理を完了しました。ご利用ありがとうございました。"
+        redirect_to root_path
     end 
     
     def setting
         @user = User.find(params[:id])
+        @posts = @user.posts
     end 
     
     def destroy
@@ -81,4 +95,5 @@ class UsersController < ApplicationController
     def user_params
         params.require(:user).permit(:name, :profile_image)
     end 
+    
 end 
