@@ -1,13 +1,17 @@
 <div class="container">
     <div class="row　text-center">
         <%= image_tag @user.get_profile_image(250, 250) %>
-        <h10><%=  @user.name %></h10>
+        <h10><%=  @user.name %></h10></br>
           
-        <h10><b>個人設定</b></h10></br>
+          <div class="col-6">
+              <h5><b>個人設定</b></h5>
+          </div>
+        
           
-        <%= link_to "ユーザー情報の編集", edit_user_path(@user) %></br>
-        <%= link_to "投稿の編集", post_path %></br>
-        <%= link_to "コメントの削除", edit_user_path %></br>
-        <%= link_to "退会", withdrawal_path %></br>
+        <%= link_to "ユーザー情報の編集", edit_user_path(@user), class: "nav-link" %></br>
+        <%= link_to "お気に入り登録一覧", users_favorites_path(@user), class: "nav-link" %></br>
+        <%= link_to "投稿の編集", users_setting_posts_path, class: "nav-link" %></br>
+        <%= link_to "コメントの削除", users_setting_comments_path, class: "nav-link" %></br>
+        <%= link_to "退会", withdrawal_path, class: "nav-link" %></br>
     </div>
 </div>

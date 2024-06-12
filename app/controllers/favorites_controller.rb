@@ -1,5 +1,6 @@
 class FavoritesController < ApplicationController
     before_action :authenticate_user!
+    before_action :guest_check, only: [:create, :destroy]
     
     def create
         @post = Post.find(params[:post_id])
@@ -21,6 +22,17 @@ class FavoritesController < ApplicationController
             redirect_to request.referer
         end 
     end 
+    
+    def show
+        @user = User.find(params[:id])
+        @favorite = @user.post.find(params[:post_id])
+    end 
+    
+    def guest_check
+        if current_user && current_user.email  == 'guest@example.com'
+          redirect_to posts_path, notice: "この機能を利用するには会員登録が必要です。"
+        end
+    end
     
     
     private

@@ -1,8 +1,8 @@
 Rails.application.routes.draw do
-  devise_for :admin, skip: [:registrations, :password], controllers: {
-    sessions: 'admin/sessions'
+  devise_for :admins, skip: [:registrations, :password], controllers: {
+    sessions: 'admins/sessions'
   }
-  namespace :admin do
+  namespace :admins do
     get 'dashboards', to: 'dashboards#index'
     resources :users, only: [:destroy]
     resources :comments, only: [:index, :destroy]
@@ -16,7 +16,10 @@ Rails.application.routes.draw do
   get 'homes/about' => 'homes#about' ,as: "about"
   get 'users/withdrawal' => 'users#withdrawal' ,as: "user_withdrawal"
   get 'withdrawal' => 'users#withdrawal' ,as: "withdrawal"
-  get 'users/setting' => 'users#setting' ,as: "setting"
+  get 'users/setting/:id' => 'users#setting' ,as: "setting"
+  get 'users/setting/:id/favorites' => 'favorites#show' ,as: "users_favorites"
+  get 'users/setting/:id/posts' => 'users#users_posts' ,as: "users_setting_posts"
+  get 'users/setting/:id/comments' => 'users#users_comments' ,as: "users_setting_comments"
   resources :users, expect: [:new] 
   
   
@@ -24,7 +27,7 @@ Rails.application.routes.draw do
       member do 
           post 'edit'
       end 
-      resource :favorites, only: [:create, :destroy]
+      resource :favorites, only: [:create, :destroy, :show]
       resources :comments
       resources :tags, only: [:show]
   end

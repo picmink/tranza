@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
     before_action :ensure_normal_user, only: :destroy
-    before_action :guest_check, only: [:edit]
+    before_action :guest_check, only: [:edit, :update, :create, :setting, :withdrawal]
     before_action :is_matching_login_user, only: [:edit, :update, :withdrawal, :destroy]
 
 
@@ -11,7 +11,7 @@ class UsersController < ApplicationController
     end
     
     def guest_check
-        if resource.email == 'guest@example.com'
+        if current_user && current_user.email == 'guest@example.com'
           redirect_to posts_path, notice: "この機能を利用するには会員登録が必要です。"
         end
     end 
@@ -75,6 +75,17 @@ class UsersController < ApplicationController
     def setting
         @user = User.find(params[:id])
         @posts = @user.posts
+        @comments = @user.comments
+    end 
+    
+    def users_posts
+        @user = User.find(params[:id])
+        @posts = @user.posts
+    end 
+    
+    def users_comments
+        @user = User.find(params[:id])
+        @comments = @user.comment
     end 
     
     def destroy

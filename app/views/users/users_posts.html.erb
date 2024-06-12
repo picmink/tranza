@@ -1,0 +1,20 @@
+<div class="container">
+    <div class="row">
+        <div class="col">
+            <h3>投稿したもの</h3>
+            
+            <table>
+              <% @posts.id each do |posts| %>
+                <tr>
+                  <td>
+                    <%= link_to posts.stone_name, post_path(post.id), class: "nav-link text-primary" %>
+                    <%= posts.caption %>
+                    <%= link_to "削除", post_path(posts.id), method: :delete, class: "btn text-outline-danger" %>
+                  </td>
+                </tr>
+              <% end %>
+            </table>
+            
+        </div>
+    </div>
+</div>

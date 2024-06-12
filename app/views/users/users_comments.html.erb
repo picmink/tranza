@@ -1,0 +1,16 @@
+<div class="container">
+    <div class="row">
+        <div class="col-lg">
+            <h3>コメントした投稿</h3>
+            <table>
+                <tr>
+                    <% @comments.id each do |comment| %>
+                       <td>
+                           <%= comment.post.id  %>
+                       </td>
+                    <% end %>
+                </tr>
+            </table>
+        </div>
+    </div>
+</div>
