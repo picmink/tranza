@@ -3,7 +3,13 @@ class UsersController < ApplicationController
     before_action :guest_check, only: [:edit, :update, :create, :setting, :withdrawal]
     before_action :is_matching_login_user, only: [:edit, :update, :withdrawal, :destroy]
 
-
+    def is_matching_login_user
+        user = User.find(params[:id])
+          unless user.id == current_user.id
+            redirect_to posts_path
+          end
+    end 
+    
     def ensure_normal_user
         if resource.email == 'guest@example.com'
           redirect_to posts_path, alert: 'ゲストユーザーは削除できません。'
