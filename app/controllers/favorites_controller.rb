@@ -27,9 +27,7 @@ class FavoritesController < ApplicationController
         @user = User.find(params[:id])
         @favorites = @user.posts
         if @favorites.empty?
-            render 'favorites/empty'
-        else
-            render 'users_favorites'
+            redirect_to favorites_empty_path
         end 
     end 
     
