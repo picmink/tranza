@@ -4,13 +4,14 @@
             <h3>投稿したもの</h3>
             
             <table>
-              <% @posts.id each do |posts| %>
+              <% @posts.each do |post| %>
                 <tr>
-                  <td>
-                    <%= link_to posts.stone_name, post_path(post.id), class: "nav-link text-primary" %>
-                    <%= posts.caption %>
-                    <%= link_to "削除", post_path(posts.id), method: :delete, class: "btn text-outline-danger" %>
-                  </td>
+                  <td class="border border-dark border-start-0 rounded-end">
+                    <%= link_to image_tag(post.get_image(200,200)), post_path(post.id) %>
+                    <strong class="text-center"><%= link_to post.stone_name, post_path(post.id), class: "nav-link text-primary" %></strong>
+                    <td class="px-4"><%= post.caption %></td>
+                    <td class="pl-5 pr-0"><%= link_to "編集", edit_post_path(post.id), class: "btn text-success" %>
+                    <td class="px-0"><%= link_to "削除", post_path(post.id), method: :delete, class: "btn text-danger" %>
                 </tr>
               <% end %>
             </table>

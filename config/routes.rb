@@ -18,6 +18,7 @@ Rails.application.routes.draw do
   get 'withdrawal' => 'users#withdrawal' ,as: "withdrawal"
   get 'users/setting/:id' => 'users#setting' ,as: "setting"
   get 'users/setting/:id/favorites' => 'favorites#show' ,as: "users_favorites"
+  get 'users/setting/:id/favorites/empty' => 'favorites#empty'
   get 'users/setting/:id/posts' => 'users#users_posts' ,as: "users_setting_posts"
   get 'users/setting/:id/comments' => 'users#users_comments' ,as: "users_setting_comments"
   resources :users, expect: [:new] 

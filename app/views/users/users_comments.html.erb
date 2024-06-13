@@ -1,12 +1,14 @@
-<div class="container">
+<div class="container p-3">
     <div class="row">
         <div class="col-lg">
-            <h3>コメントした投稿</h3>
+            <h3 class="text-center">コメントした投稿</h3>
             <table>
-                <tr>
-                    <% @comments.id each do |comment| %>
+                <tr class="border border-info border-start-0 rounded-end">
+                    <% @comments.each do |comment| %>
                        <td>
-                           <%= comment.post.id  %>
+                           <%= link_to image_tag(comment.post.id.get_image(200,200)), post_path(comment.post.id) %>
+                           <%= link_to comment.post.stone_name, post_path(comment.post.id) %>
+                           <%= comment %>
                        </td>
                     <% end %>
                 </tr>

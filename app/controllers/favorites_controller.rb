@@ -25,7 +25,15 @@ class FavoritesController < ApplicationController
     
     def show
         @user = User.find(params[:id])
-        @favorite = @user.post.find(params[:post_id])
+        @favorites = @user.posts
+        if @favorites.empty?
+            render 'favorites/empty'
+        else
+            render 'users_favorites'
+        end 
+    end 
+    
+    def empty
     end 
     
     def guest_check

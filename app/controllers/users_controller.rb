@@ -91,7 +91,7 @@ class UsersController < ApplicationController
     
     def users_comments
         @user = User.find(params[:id])
-        @comments = @user.comment
+        @comments = @user.comments
     end 
     
     def destroy

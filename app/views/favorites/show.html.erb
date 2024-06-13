@@ -2,10 +2,16 @@
     <div class="row">
         <div class="col-lg">
             <h3>お気に入りした投稿</h3>
-            <% @favorite.favorite.id each do |favorite| %>
-            <%= link_to favorite.stone_name, post_path(favorite), class: "nav-link text-dark" %>
-            <%= favorite.caption %>
-            <% end %>
+            <table>
+                <% @favorites each do |favorite| %>
+                <tr>
+                    <td class="border border-info border-start-0 rounded-end">
+                        <%= link_to favorite.stone_name, post_path(favorite), class: "nav-link text-dark" %>
+                        <%= favorite.caption %>
+                    </td>
+                </tr>
+                <% end %>
+            </table>
         </div>
     </div>
 </div>
