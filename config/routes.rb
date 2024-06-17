@@ -14,13 +14,13 @@ Rails.application.routes.draw do
   root to: 'homes#top'
   post 'homes/guest_sign_in' => 'homes#guest_sign_in' ,as: "guest_sign_in"
   get 'homes/about' => 'homes#about' ,as: "about"
-  get 'users/withdrawal' => 'users#withdrawal' ,as: "user_withdrawal"
-  get 'withdrawal' => 'users#withdrawal' ,as: "withdrawal"
   get 'users/setting/:id' => 'users#setting' ,as: "setting"
   get 'users/setting/:id/favorites' => 'favorites#show' ,as: "users_favorites"
   get 'users/setting/:id/favorites/empty' => 'favorites#empty' ,as: "favorites_empty" 
   get 'users/setting/:id/posts' => 'users#users_posts' ,as: "users_setting_posts"
   get 'users/setting/:id/comments' => 'users#users_comments' ,as: "users_setting_comments"
+  get '/users/:id/unsubscribe' => 'users#unsubscribe', as: 'unsubscribe'
+  patch 'users/:id/withdrawal' => 'users#withdrawal' ,as: "withdrawal"
   resources :users, expect: [:new] 
   
   

@@ -4,8 +4,8 @@ class UsersController < ApplicationController
     before_action :is_matching_login_user, only: [:edit, :update, :withdrawal, :destroy]
 
     def is_matching_login_user
-        user = User.find(params[:id])
-          unless user.id == current_user.id
+        @user = User.find(params[:id])
+          unless @user.id == current_user.id
             redirect_to posts_path
           end
     end 
@@ -74,8 +74,12 @@ class UsersController < ApplicationController
         @user = User.find(params[:id])
         @user.update(is_deleted: true)
         reset_session
-        flash[:notice] = "退会処理を完了しました。ご利用ありがとうございました。"
+        flash[:notice] = "退会処理を実行いたしました.またのご利用お待ちしております。"
         redirect_to root_path
+    end 
+    
+    def unsubscribe
+        @user = User.find(params[:id])
     end 
     
     def setting

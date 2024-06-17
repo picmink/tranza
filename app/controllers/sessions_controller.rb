@@ -6,7 +6,7 @@ class SessionsController < ApplicationController
         if @user
             if @user.valid_password?(params[:user][:password]) && (@user.is_deleted == false)
                 flash[:notece] = "退会済みです。再度会員登録をしてご利用ください。"
-                redirect_to root_path
+                redirect_to new_user_registration_path
             else
                 flash[:notice] = "項目を入力してください"
             end

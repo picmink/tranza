@@ -6,13 +6,13 @@
                 <% @favorites.each do |favorite| %>
                 <tr>
                     <td class="border border-info border-start-0 rounded-end">
-                        <%= link_to image_tag(favorite.get_image(200,200)), post_path(favorite.id) %>
+                        <%= link_to image_tag(favorite.post.get_image(200,200)), post_path(favorite.id) %>
                     </td>
                     <td class="px-3">
-                        <strong><%= link_to favorite.stone_name, post_path(favorite), class: "nav-link text-primary" %></strong>
+                        <strong><%= link_to favorite.post.stone_name, post_path(favorite.post.id), class: "nav-link text-primary" %></strong>
                     </td>
                     <td class="px-2">
-                        <%= favorite.caption %>
+                        <%= favorite.post.caption %>
                     </td> 
                         
                     

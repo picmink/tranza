@@ -15,6 +15,7 @@ class PostsController < ApplicationController
     @search = Post.ransack(params[:q])
     @posts = @search.result.page(params[:page]).per(10).order("created_at desc")
     @tags = Tag.all
+
   end
 
   def show
@@ -25,7 +26,7 @@ class PostsController < ApplicationController
 
   def edit
     @posts = Post.find(params[:id])
-    @tags = @posts.tags.pluck(:tag_name).join(",")
+    @tags = @posts.tags.pluck(:tag_name).join(" ")
   end
 
   def create

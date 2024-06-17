@@ -25,7 +25,7 @@ class FavoritesController < ApplicationController
     
     def show
         @user = User.find(params[:id])
-        @favorites = @user.posts
+        @favorites = @user.favorites
         if @favorites.empty?
             redirect_to favorites_empty_path
         end 

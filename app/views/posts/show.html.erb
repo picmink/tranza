@@ -1,44 +1,59 @@
-<div class="container bg-primary-subtle">
-    <div class="row-5">
-    <%= image_tag(@posts.get_image(300,300)) %>
-    <strong><%= @posts.stone_name %></strong>
-    <%= @posts.caption %>
-    <div class="p-4"><%= @posts.tags.map(&:tag_name).join(' , ') %></div>
+<div class="containere">
+    <div class="rowd-flex">
+        <div class="col-lg">
+            <table class="text-center col-11">
+                <th class="col-4"><%= image_tag(@posts.get_image(300,300)) %><br>
+                <%= link_to @posts.tags.map(&:tag_name).join(' , '), post_path(@posts.id) %></th>
+                <th class="col-0"><strong><%= @posts.stone_name %></strong></th>
+                <td class="col-4"><%= @posts.caption %></td>
+                <td class="pl-4"><%= link_to "編集", edit_post_path(@posts.id), method: :pacth, class: "btn btn-primary" %></td>
+                <td class="pr-4"><%= link_to "削除", post_path(@posts.id), method: :delete, "data-confirm" => "本当に削除しますか？", class: "btn btn-danger" %></td>
+                <td><% if @posts.favorited_by?(current_user) %>
+                        <p>お気に入り済</p>
+                        <%= link_to post_favorites_path(@posts), method: :delete, class: "nav-link" do %>
+                        <i class="fa-solid fa-star"></i>
+                        <% end %>
+                      <% else %>
+                      <p>お気に入り登録</p>
+                        <%= link_to post_favorites_path(@posts), method: :post, class: "nav-link" do %>
+                        <i class="fa-regular fa-star"></i>
+                        <% end %>
+                    <% end %>
+                </td>
+            </table>
+            
+        </div>
     
-    <%= link_to "編集", edit_post_path(@posts.id), method: :pacth %>
-    <%= link_to "削除", post_path(@posts.id), method: :delete, "data-confirm" => "本当に削除しますか？" %>
-    
-    
-    <% if @posts.favorited_by?(current_user) %>
-        <%= link_to post_favorites_path(@posts), method: :delete, class: "nav-link" do %>
-        <i class="fa-solid fa-star"></i>
-        <% end %>
-      <% else %>
-        <%= link_to post_favorites_path(@posts), method: :post, class: "nav-link" do %>
-        <i class="fa-regular fa-star"></i>
-        <% end %>
-    <% end %>
-    
-    
-    <p>コメント数:<%= @posts.comment_count %>件</p>
-    <% @posts.comments.each do |comments| %>
-        <%= image_tag comments.user.get_profile_image(50,50) %>
-        <%= comments.user.name %>
-        <%= comments.created_at.strftime('%Y/%m/%d') %><br>
-        <%= comments.comment %>
+
+    <div class="col-5 text-center py-5">
+        <div class="col-8">
+            <p>コメント数:<%= @posts.comment_count %>件</p>
+        </div>
         
-        <% if comments.user.id == current_user.id %>
-            <%= link_to "削除", post_comment_path(comments.post_id, comments), method: :delete,  "data-confirm" => "本当に削除しますか？" %>
-        <% else %>
-        <% end %>
-        
-    <% end %><br>
-    <div>
-        <%= form_with model: [@posts, @comment] do |f| %>
-            <%= f.text_area :comment, placeholder: "コメント" %><br>
-            <%= f.submit "送信"%>
-        <% end %>
+        <div class="text-center col-12 pt-4">
+            <% @posts.comments.each do |comments| %>
+                <%= image_tag comments.user.get_profile_image(50,50) %>
+                <%= comments.user.name %>
+                <%= comments.created_at.strftime('%Y/%m/%d') %><br>
+                <%= comments.comment %>
+                
+                <% if comments.user.id == current_user.id %>
+                    <%= link_to "削除", post_comment_path(comments.post_id, comments), method: :delete,  "data-confirm" => "本当に削除しますか？" %>
+                <% else %>
+                <% end %>
+                
+            <% end %>
+        </div>
+
+        <div class="text-center">
+            <%= form_with model: [@posts, @comment] do |f| %>
+                <%= f.text_area :comment, placeholder: "コメント", size: "50x5" %><br>
+                <%= f.submit "送信"%>
+            <% end %>
+        </div>
     </div>
+    
+    
     </div>
 </div>
     

@@ -1,22 +1,49 @@
-<h3>投稿画面</h3>
+<div class="container p-5">
+    <div class="row d-flex">
+        <div class="col">
+            <h3 class="text-center"><strong>投稿画面</strong></h3>
 
-<% if @posts.errors.any? %>
-    <%= @posts.errors.count %>件のエラーが発生しました
-    <ul class="list-group">
-        <% @posts.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-        <% end %>
-    </ul>
-<% end %>
+        <div>
+            <% if @posts.errors.any? %>
+                <%= @posts.errors.count %>件のエラーが発生しました
+                <ul class="list-group">
+                    <% @posts.errors.full_messages.each do |message| %>
+                    <li><%= message %></li>
+                    <% end %>
+                </ul>
+            <% end %>
+        </div>
+        
+        <div class="text-center">
+            <%= form_with model: @posts do |f| %>
+            <div class="py-3">
+                <h5><strong><%= f.label :image, "画像" %></strong></h5>
+                <%= f.file_field :image, accept: "image/*" %>
+            </div>
+            <div class="py-3">
+                <label class="text-primary"><strong><%= f.label :stone_name, "天然石名・宝石名" %></strong></label></br>
+                <%= f.text_field :stone_name, size: "30x5" %>
+            </div>
+            <div class="py-3">
+                <label class="text-warning"><strong><%= f.label :caption, "説明文" %></strong></label></br>
+                <%= f.text_area :caption, size: "35x5" %>
+            </div>
+            <div class="py-5">
+                <label class="text-secondary"><strong><%= f.label :tag, "タグ（半角スペースで複数登録できます。）" %></strong></label></br>
+                <%= f.text_field :tag %>
+            </div>
+            <div>
+                <%= f.submit '投稿', class: "btn btn-outline-success" %>
+            </div>
+                
+            <% end %>
+        </div>
+            
 
-<%= form_with model: @posts do |f| %>
-    <%= f.label :image, "画像" %>
-    <%= f.file_field :image, accept: "image/*" %>
-    <%= f.label :stone_name, "天然石名・宝石名" %>
-    <%= f.text_field :stone_name %>
-    <%= f.label :caption, "説明文" %>
-    <%= f.text_area :caption %>
-    <%= f.label :tag, "タグ（半角スペースで複数登録できます。）" %>
-    <%= f.text_field :tag %>
-    <%= f.submit '投稿' %>
-<% end %>
+        </div>
+    </div>
+</div>
+
+
+
+
