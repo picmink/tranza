@@ -52,6 +52,7 @@ class UsersController < ApplicationController
     def show
         @user = User.find(params[:id])
         @posts = @user.posts
+        @comments = Comment.where(post_id: params[:post_id])
     end 
     
     def create

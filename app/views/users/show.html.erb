@@ -1,36 +1,60 @@
-<div>
+<div class="container">
+  <div class="row">
+    <div class="col-lg d-flex-wrap">
+      
+      
 
-    <%= link_to image_tag(@user.get_profile_image(200, 200)), edit_user_path(@user) %>
-    <h10><%= link_to @user.name, edit_user_path(@user) %></h10>
+        <table class="pb-5">
+          <tr>
+            <th class="p-3 pr-5"><%= link_to image_tag(@user.get_profile_image(200, 200)), edit_user_path(@user) %></th>
+            <th class="px-5">
+              <% if @user.id == current_user %>
+                <h5><%= link_to @user.name, edit_user_path(@user) %></h5>
+              <% else %>
+                <h5><%= @user.name %></h5>
+              <% end %>
+            </th>
+          </tr>
+        </table>
+
+      
+      
+
+        <table>
+          <tr>
+            <th class="text-center"><h2>投稿一覧</h2></th>
+          </tr>
+          <% @posts.each do |post| %>
+          <tr>
+            <td class="p-3"><%= link_to image_tag(post.get_image(150, 150)), post_path(post.id) %></td>
+            <td class="px-5"><%= link_to post.stone_name, post_path(post.id) %></td>
+            <td class="pl-5"><%= post.caption %></td>
+          </tr>
+          <% end %>
+        </table>
+        
+        <div>
+          <% if @user.id == current_user%>
+            <%= link_to "投稿する", new_post_path, class: "btn btn-outline-success" %>
+          <% else %>
+          <% end %>
+        </div>
+      
+      <table class="pt-5">
+          <tr>
+            <th><h2>コメント一覧</h2></th>
+          </tr>
+          <% @comments.each do |comment| %>
+          <tr>
+            <td class="p-3"><%= link_to image_tag(comment.get_image(150, 150)), post_path(comment.id) %></td>
+            <td class="px-5"><%= link_to comment.stone_name, post_path(comment.id) %></td>
+            <td class="pl-5"><%= comment %></td>
+          </tr>
+          <% end %>
+        </table>
     
       
-    <br>
-
- 
-    <h8>投稿一覧</h8>
-        <table>
-          <% @posts.each do |post| %>
-            <tr>
-              <td><%= link_to image_tag(post.get_image(150, 150)), post_path(post.id) %></td>
-              <td><%= link_to post.stone_name, post_path(post.id) %></td>
-              <td><%= post.caption %></td>
-            </tr>
-          <% end %>
-        </table>
-
-
-    <%= link_to "投稿する", new_post_path %><br>
-    
-    <h8>コメント一覧</h8>
-        <table>
-          <% @posts.each do |comments| %>
-            <tr>
-              <td><%= link_to image_tag(comments.get_image(150, 150)), post_path(comments.id) %></td>
-              <td><%= link_to comments.stone_name, post_path(comments.id) %></td>
-              <td><%= comments.caption %></td>
-            </tr>
-          <% end %>
-        </table>
-    
+    </div>
+  </div>
 </div>
     
