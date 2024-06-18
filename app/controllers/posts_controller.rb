@@ -15,7 +15,6 @@ class PostsController < ApplicationController
     @search = Post.ransack(params[:q])
     @posts = @search.result.page(params[:page]).per(10).order("created_at desc")
     @tags = Tag.all
-
   end
 
   def show

@@ -8,10 +8,10 @@
 
       <%= search_form_for @search do |f| %>
         <%= f.search_field :stone_name_cont, placeholder: '検索ワード' %>
-        <%= f.collection_select(:tag_id, Tag.all, :id, :tag_name, include_blank: "タグ") %>
+        <%= f.collection_select(:tag_id_eq, Tag.all, :id, :tag_name, include_blank: "タグ") %>
         <%= f.submit '検索' %>
       <% end %>
-      
+
       <div>
           <% @tags.each do |list| %>
           <%= link_to list.tag_name, post_tag_path(list.post_ids, id: list.id) %>
