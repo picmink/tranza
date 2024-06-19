@@ -8,18 +8,18 @@
 
       <%= search_form_for @search do |f| %>
         <%= f.search_field :stone_name_cont, placeholder: '検索ワード' %>
-        <%= f.collection_select(:tag_id_eq, Tag.all, :id, :tag_name, include_blank: "タグ") %>
+        <%= f.collection_select(:tag_id, Tag.all, :id, :tag_name, include_blank: "タグ") %>
         <%= f.submit '検索' %>
       <% end %>
 
       <div>
           <% @tags.each do |list| %>
-          <%= link_to list.tag_name, post_tag_path(list.post_ids, id: list.id) %>
+          <%= link_to list.tag_name, post_tag_path(list.post_ids, id: list.id), class: "text-dark" %>
           <%= "(#{list.posts.count})" %>
           <% end %>
       </div>
     
-    <div class="col pt-3 pb-3">
+    <div class="pt-3 pb-3">
       <table>
         <th class="px-5"></th>
         <th class="px-5">天然石・宝石名</th>
@@ -29,7 +29,7 @@
           <tr>
             <td><%= link_to image_tag(post.get_image(200, 200)), post_path(post) %></td>
             <td class="px-5"><%= link_to post.stone_name, post_path(post) %></td>
-            <td class="col-5 p-1"><%= post.caption %></td>
+            <td class="col-3 p-1"><%= post.caption %></td>
             <td class="px-5"><%= post.tags.map(&:tag_name).join('、') %></td>
           </tr><br>
       <% end %>

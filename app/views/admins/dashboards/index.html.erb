@@ -1,32 +1,42 @@
-<div container>
+<div class="container">
   <div class="row">
     <div class="col-lg">
       
       
-      <div class="col"><h3>全ユーザー一覧</h3></div>
+      <div class="text-center"><h3><strong>全ユーザー一覧</strong></h3></div>
       
-        <table>
-          <th>
-            <td　class="p-4"><strong>ユーザーネーム　-　メールアドレス</strong></td>
-          </th>
+        <table class="col-10 text-center p-5">
+          <tr class="p-5 bg-primary border border-secondary border-start-0 rounded-end">
+            <th>ユーザーネーム</th>
+            <th>メールアドレス</th>
+            <th class="pl-4">アクション</th>
+          </tr>
           <% @users.each do |user| %>
           <tr>
-            <td class="p-4"><strong><%= user.name %></strong> - <%= user.email %></td>
-            <td class="pl-4"><%= link_to '削除', admins_user_path(user), method: :delete, data: { confirm: 'このユーザーを削除しますか？' }, class: "btn btn-nav-link text-danger " %></td>
-          </tr>
-          <% end %>
-        </table>
-        
-        <table>
-          <% user.comments.each do |comment| %>
-          <tr>
-            <td class="p-4"><strong>><%= comment.user.name %></strong></td>
-            <td class="p-2"><%= comment %></td>
-            <td class="pl-4"><%= link_to comment.comment, admins_comment_path(comment.id), method: :delete, data: { confirm: 'このコメントを削除しますか？' },  class: "text-danger " %></td>
+            <td class="p-4"><strong><%= user.name %></strong></td>
+            <td class="p-4"><%= user.email %></td>
+            <td class="p-4"><%= link_to '削除', admins_user_path(user), method: :delete, data: { confirm: 'このユーザーを削除しますか？' }, class: "btn btn-nav-link text-danger " %></td>
           </tr>
           <% end %>
         </table>
       
+       <div class="text-center pt-5"><h3><strong>全ユーザーのコメント一覧</strong></h3></div>
+        <table class="col-10 text-center p-5">
+          <tr class="p-5 bg-warning border border-secondary border-start-0 rounded-end">
+            <th>ユーザーネーム</th>
+            <th>コメント</th>
+            <th class="pl-4">アクション</th>
+          </tr>
+          <% @users.each do |user_comment| %>
+            <% user_comment.comments.each do |comment| %>
+            <tr>
+              <td class="p-4"><strong>><%= user_comment.name %></strong></td>
+              <td class="p-2"><%= comment.comment %></td>
+              <td class="p-4"><%= link_to "削除", admins_comment_path(comment.comment.id), method: :delete, data: { confirm: 'このコメントを削除しますか？' },  class: "text-danger " %></td>
+            </tr>
+            <% end %>
+          <% end %>
+        </table>
       
     </div>
   </div>

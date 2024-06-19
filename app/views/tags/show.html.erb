@@ -1,11 +1,18 @@
-<h3><%= @tag.tag_name+"　タグ投稿一覧" %></h3>
+<div class="container">
+  <div class="row">
+    <div class="col-lg">
+      <h3 class="text-center pt-3 pb-5"><%= @tag.tag_name+"　タグ投稿一覧" %></h3>
 
-<table>
-  <% @posts.each do |tag_post| %>
-    <tr>
-        <td><%= link_to image_tag(tag_post.get_image(200, 200)), post_path(tag_post) %></td>
-        <td><%= link_to tag_post.stone_name, post_path(tag_post) %></td>
-        <td><%= tag_post.caption %></td>
-    </tr>
-  <% end %>
-</table>
+        <table>
+          <% @posts.each do |tag_post| %>
+            <tr class="p-3">
+                <td><%= link_to image_tag(tag_post.get_image(200, 200)), post_path(tag_post) %></td>
+                <td class="col-3 px-5"><%= link_to tag_post.stone_name, post_path(tag_post) %></td>
+                <td class="px-5"><%= tag_post.caption %></td>
+            </tr>
+          <% end %>
+        </table>
+    </div>
+  </div>
+</div>
+

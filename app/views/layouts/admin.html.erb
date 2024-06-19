@@ -6,13 +6,27 @@
   <%= csp_meta_tag %>
   <%= stylesheet_pack_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
   <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+  <script src="https://kit.fontawesome.com/886717443f.js" crossorigin="anonymous"></script>
 </head>
 <body>
-  <% if admin_signed_in? %>
-    <div class="text-right">
-      <%= link_to 'ログアウト', destroy_admin_session_path, method: :delete %>
-    </div>
-  <% end %>
+  <header class="bg-secondary">
+    <% if admin_signed_in? %>
+      <div class="text-right p-3">
+        <%= link_to destroy_admin_session_path, method: :delete, class: "btn btn-outline-light" do %>
+         <i class="fa-solid fa-arrow-right-from-bracket m-2"></i>ログアウト
+        <% end %>
+      </div>
+    <% end %>
+  </header>
+  
   <%= yield %>
+  
+  <footer class="pt-4 pb-4 bg-secondary text-center">
+      <div class="container">
+        <div class="row text-light">
+          <div class="col-12">tranza</div>
+        </div>
+      </div>
+  </footer>
 </body>
 </html>

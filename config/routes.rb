@@ -5,7 +5,7 @@ Rails.application.routes.draw do
   namespace :admins do
     get 'dashboards', to: 'dashboards#index'
     resources :users, only: [:destroy]
-    resources :comments, only: [:index, :destroy]
+    resources :comments, only: [:destroy]
   end
   
   
@@ -14,6 +14,8 @@ Rails.application.routes.draw do
   root to: 'homes#top'
   post 'homes/guest_sign_in' => 'homes#guest_sign_in' ,as: "guest_sign_in"
   get 'homes/about' => 'homes#about' ,as: "about"
+  
+  
   get 'users/setting/:id' => 'users#setting' ,as: "setting"
   get 'users/setting/:id/favorites' => 'favorites#show' ,as: "users_favorites"
   get 'users/setting/:id/favorites/empty' => 'favorites#empty' ,as: "favorites_empty" 

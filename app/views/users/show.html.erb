@@ -23,6 +23,11 @@
         <table>
           <tr>
             <th class="text-center"><h2>投稿一覧</h2></th>
+            <th class="pl-5">
+            <% if @user.id == current_user.id %>
+              <%= link_to "投稿する", new_post_path, class: "btn btn-outline-success" %>
+            <% end %>
+            </th>
           </tr>
           <% @posts.each do |post| %>
           <tr>
@@ -32,13 +37,6 @@
           </tr>
           <% end %>
         </table>
-        
-        <div>
-          <% if @user.id == current_user%>
-            <%= link_to "投稿する", new_post_path, class: "btn btn-outline-success" %>
-          <% else %>
-          <% end %>
-        </div>
       
       <table class="pt-5">
           <tr>
