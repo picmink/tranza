@@ -1,0 +1,23 @@
+<div class="container">
+    <div class="row">
+        <div class="col-lg">
+            
+            <div class="text-center"><h3><strong>全タグ一覧</strong></h3></div>
+      
+                <table class="col-10 text-center p-5">
+                  <tr class="p-5 bg-primary border border-secondary border-start-0 rounded-end">
+                    <th>タグ</th>
+                    <th class="pl-4">アクション</th>
+                  </tr>
+                  <% @tags.each do |tag| %>
+                  <tr>
+                    <td class="p-4"><strong><%= tag.tag_name %></strong></td>
+                    <td class="p-4"><%= link_to '削除', admins_tag_path(tag), method: :delete, data: { confirm: 'このタグを削除しますか？' }, class: "btn btn-nav-link text-danger " %></td>
+                  </tr>
+                  <% end %>
+                </table>
+                
+        </div>
+    </div>
+</div>
+    

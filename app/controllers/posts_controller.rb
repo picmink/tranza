@@ -45,9 +45,9 @@ class PostsController < ApplicationController
     tags = params[:post][:tag_ids].split(',')
     if posts.update(post_params)
       posts.update_tags(tags)
-      if posts.tags.empty?
-        posts.tags.destroy_all
-      end 
+      # if posts.tags.empty?
+      #   posts.tags.destroy_all
+      # end 
       redirect_to post_path(posts.id)
     else
       render :edit
