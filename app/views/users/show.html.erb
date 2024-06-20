@@ -31,7 +31,7 @@
           </tr>
           <% @posts.each do |post| %>
           <tr>
-            <td class="p-3"><%= link_to image_tag(post.get_image(150, 150)), post_path(post.id) %></td>
+            <td class="m-3 p-3"><%= link_to image_tag(post.get_image(150, 150)), post_path(post.id) %></td>
             <td class="px-5"><%= link_to post.stone_name, post_path(post.id) %></td>
             <td class="pl-5"><%= post.caption %></td>
           </tr>

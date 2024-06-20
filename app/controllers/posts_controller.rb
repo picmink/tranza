@@ -14,9 +14,27 @@ class PostsController < ApplicationController
   def index
     @search = Post.ransack(params[:q])
     @posts = @search.result.page(params[:page]).per(10).order("created_at desc")
+    
     @tags = Tag.all
+    @tag_search = Tag.ransack(params[:tag_q])
+    @tag_results = if params[:tag_q].present? && params[:tag_q][:tag_id_eq].present?
+                    @tag = Tag.find_by(id: params[:tag_q][:tag_id_eq])
+                    @tag.posts.includes(:tag_id).ransack(params[:tag_q]).result.page(params[:page]).per(10).order("created_at desc")
+                  else
+                    Post.none
+                  end
   end
-
+  
+  def search
+    @tag_search = Tag.ransack(params[:q])
+    @tag = Tag.find_by(id: params[:q][:tag_id_eq]) if params[:q].present? && params[:q][:tag_id_eq].present?
+    if @tag.present?
+      @tag_results = @tag.posts.includes(:tag_id).ransack(params[:q]).result.page(params[:page]).per(10).order("created_at desc")
+    else
+      @tag_results = Post.none
+    end 
+  end 
+  
   def show
     @posts = Post.find(params[:id])
     @user = @posts.user
