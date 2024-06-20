@@ -16,6 +16,7 @@ class PostsController < ApplicationController
     @posts = @search.result.page(params[:page]).per(10).order("created_at desc")
     
     @tags = Tag.all
+    
     @tag_search = Tag.ransack(params[:tag_q])
     @tag_results = if params[:tag_q].present? && params[:tag_q][:tag_id_eq].present?
                     @tag = Tag.find_by(id: params[:tag_q][:tag_id_eq])
@@ -27,12 +28,12 @@ class PostsController < ApplicationController
   
   def search
     @tag_search = Tag.ransack(params[:q])
-    @tag = Tag.find_by(id: params[:q][:tag_id_eq]) if params[:q].present? && params[:q][:tag_id_eq].present?
+    @tag = Tag.find_by(id: params[:q][:id]) if params[:q].present? && params[:q][:id].present?
     if @tag.present?
-      @tag_results = @tag.posts.includes(:tag_id).ransack(params[:q]).result.page(params[:page]).per(10).order("created_at desc")
+      @tag_results = @tag.posts.page(params[:page]).per(10).order("created_at desc")
     else
       @tag_results = Post.none
-    end 
+    end
   end 
   
   def show
@@ -63,9 +64,6 @@ class PostsController < ApplicationController
     tags = params[:post][:tag_ids].split(',')
     if posts.update(post_params)
       posts.update_tags(tags)
-      if posts.tags.empty?
-        posts.tags.destroy_all
-      end 
       redirect_to post_path(posts.id)
     else
       render :edit

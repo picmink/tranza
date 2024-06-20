@@ -16,7 +16,7 @@
               <tbody>
                 <% @tag_results.each do |post| %>
                   <tr>
-                    <td><%= post.tag.tag_name %></td>
+                    <td><%= post.tags.map(&:tag_name).join('、') %></td>
                     <td><%= image_tag(post.get_image(100,100)) %></td>
                     <td><%= post.stone_name %></td>
                 <% end %>
