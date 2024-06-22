@@ -23,7 +23,7 @@
       
       <div>
           <% @tags.each do |list| %>
-          <%= link_to list.tag_name, post_tag_path(list.post_ids, id: list.id), class: "text-dark" %>
+          <%= link_to list.tag_name, tag_path(list.id), class: "text-dark" %>
           <%= "(#{list.posts.count})" %>　　
           <% end %>
       </div>

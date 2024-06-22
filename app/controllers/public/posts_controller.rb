@@ -16,7 +16,7 @@ class Public::PostsController < ApplicationController
     @posts = @search.result.page(params[:page]).per(10).order("created_at desc")
     
     @tags = Tag.all
-
+    
     @tag_search = Tag.ransack(params[:tag_q])
     @tag_results = if params[:tag_q].present? && params[:tag_q][:tag_id_eq].present?
                     @tag = Tag.find_by(id: params[:tag_q][:tag_id_eq])

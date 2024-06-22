@@ -37,8 +37,11 @@ Rails.application.routes.draw do
         end 
         resource :favorites, only: [:create, :destroy, :show]
         resources :comments
-        resources :tags, only: [:show]
+        
     end
+    
+    resources :tags, only: [:show]
+    
   end 
   
   
