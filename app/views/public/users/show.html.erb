@@ -37,6 +37,7 @@
           </tr>
           <% end %>
         </table>
+        <div class="text-center"><%= paginate @posts %></div>
       
       <table class="pt-5">
           <tr>
@@ -49,6 +50,7 @@
             <td class="pl-5"><%= comment %></td>
           </tr>
           <% end %>
+          <%= paginate @comments %>
         </table>
     
       

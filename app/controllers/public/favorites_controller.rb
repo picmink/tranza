@@ -1,4 +1,4 @@
-class FavoritesController < ApplicationController
+class Public::FavoritesController < ApplicationController
     before_action :authenticate_user!
     before_action :guest_check, only: [:create, :destroy]
     

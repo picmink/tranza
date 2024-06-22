@@ -1,4 +1,4 @@
-class PostsController < ApplicationController
+class Public::PostsController < ApplicationController
   before_action :guest_check, only: [:new, :edit, :create, :update, :destroy]
   
   def guest_check
@@ -16,7 +16,7 @@ class PostsController < ApplicationController
     @posts = @search.result.page(params[:page]).per(10).order("created_at desc")
     
     @tags = Tag.all
-    
+
     @tag_search = Tag.ransack(params[:tag_q])
     @tag_results = if params[:tag_q].present? && params[:tag_q][:tag_id_eq].present?
                     @tag = Tag.find_by(id: params[:tag_q][:tag_id_eq])
@@ -27,6 +27,7 @@ class PostsController < ApplicationController
   end
   
   def search
+    
     @tag_search = Tag.ransack(params[:q])
     @tag = Tag.find_by(id: params[:q][:id]) if params[:q].present? && params[:q][:id].present?
     if @tag.present?

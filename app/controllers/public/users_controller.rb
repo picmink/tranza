@@ -1,4 +1,4 @@
-class UsersController < ApplicationController
+class Public::UsersController < ApplicationController
     before_action :ensure_normal_user, only: :destroy
     before_action :guest_check, only: [:edit, :update, :create, :setting, :withdrawal]
     before_action :is_matching_login_user, only: [:edit, :update, :withdrawal, :destroy]
@@ -51,8 +51,8 @@ class UsersController < ApplicationController
     
     def show
         @user = User.find(params[:id])
-        @posts = @user.posts
-        @comments = Comment.where(post_id: params[:post_id])
+        @posts = @user.posts.page(params[:page]).per(5).order("created_at desc")
+        @comments = Comment.where(post_id: params[:post_id]).page(params[:page]).per(5).order("created_at desc")
     end 
     
     def create

@@ -17,11 +17,12 @@
                 <% @tag_results.each do |post| %>
                   <tr>
                     <td><%= post.tags.map(&:tag_name).join('、') %></td>
-                    <td><%= image_tag(post.get_image(100,100)) %></td>
-                    <td><%= post.stone_name %></td>
+                    <td><%= link_to image_tag(post.get_image(200,200)), post_path(post.id) %></td>
+                    <td><%= link_to post.stone_name, post_path(post.id) %></td>
                 <% end %>
               </tbody>
             </table>
+            <div class="text-center"><%= paginate @tag_results %></div>
         </div>
     </div>
 </div>
