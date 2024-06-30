@@ -1,5 +1,0 @@
-== 20240514134545 CreateFavorites: reverting ==================================
--- drop_table(:favorites)
-   -> 0.0079s
-== 20240514134545 CreateFavorites: reverted (0.0095s) =========================
-

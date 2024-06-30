@@ -1,5 +1,0 @@
-== 20240518102049 CreateComments: reverting ===================================
--- drop_table(:comments)
-   -> 0.0065s
-== 20240518102049 CreateComments: reverted (0.0092s) ==========================
-
