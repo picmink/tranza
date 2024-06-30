@@ -1,4 +1,5 @@
 class Public::UsersController < ApplicationController
+    before_action :authenticate_user!
     before_action :ensure_normal_user, only: :destroy
     before_action :guest_check, only: [:edit, :update, :create, :setting, :withdrawal]
     before_action :is_matching_login_user, only: [:edit, :update, :withdrawal, :destroy]
