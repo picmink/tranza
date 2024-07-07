@@ -1,6 +1,14 @@
 class Public::FavoritesController < ApplicationController
     before_action :authenticate_user!
     before_action :guest_check, only: [:create, :destroy]
+    before_action :is_matching_login_user, only: [:destroy, :create]
+
+    def is_matching_login_user
+        @user = User.find(params[:id])
+          unless @user.id == current_user.id
+            redirect_to posts_path
+          end
+    end 
     
     def create
         @post = Post.find(params[:post_id])

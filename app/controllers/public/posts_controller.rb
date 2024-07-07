@@ -1,6 +1,14 @@
 class Public::PostsController < ApplicationController
   before_action :authenticate_user!
   before_action :guest_check, only: [:new, :edit, :create, :update, :destroy]
+  before_action :is_matching_login_user, only: [:mew, :edit, :update, :destroy]
+
+  def is_matching_login_user
+      @user = User.find(params[:id])
+        unless @user.id == current_user.id
+          redirect_to posts_path
+        end
+  end 
   
   def guest_check
         if current_user && current_user.email  == 'guest@example.com'

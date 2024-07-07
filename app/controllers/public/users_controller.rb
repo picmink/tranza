@@ -2,7 +2,7 @@ class Public::UsersController < ApplicationController
     before_action :authenticate_user!
     before_action :ensure_normal_user, only: :destroy
     before_action :guest_check, only: [:edit, :update, :create, :setting, :withdrawal]
-    before_action :is_matching_login_user, only: [:edit, :update, :withdrawal, :destroy]
+    before_action :is_matching_login_user, only: [:edit, :update, :withdrawal, :destroy, :unsubscribe, :setting, :users_posts, :users_comments]
 
     def is_matching_login_user
         @user = User.find(params[:id])
@@ -42,7 +42,7 @@ class Public::UsersController < ApplicationController
         unless user.id == current_user.id
             render setting_path(current_user.id)
         end 
-        if user.id = current_user.id
+        if user.id == current_user.id
            user.update(user_params)
            redirect_to user_path(user)
         else
@@ -62,7 +62,7 @@ class Public::UsersController < ApplicationController
         unless user.id == current_user.id
             render user_path(current_user.id)
         end 
-        if @post.user_id = current_user.id
+        if @post.user_id == current_user.id
            @post.save
            render post_path
         else
@@ -105,7 +105,7 @@ class Public::UsersController < ApplicationController
         unless @user.id == current_user.id
             render user_path(@user)
         end 
-        if @user.user.id = current_user.id
+        if @user.user.id == current_user.id
            @user.destroy
            redirect_to root_path
         else
