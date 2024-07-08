@@ -1,7 +1,7 @@
 class Public::CommentsController < ApplicationController
     before_action :authenticate_user!
     before_action :guest_check
-    before_action :is_matching_login_user, only: [:destroy, :create]
+    before_action :is_matching_login_user, only: [:destroy]
 
     def is_matching_login_user
         @user = User.find(params[:id])
