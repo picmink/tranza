@@ -6,7 +6,7 @@
 
 
 #### サイトテーマ
- 　お家に眠っている宝石・原石や重複し宝石・原石を取引できるコミュニティサイト
+ お家に眠っている宝石・原石や重複し宝石・原石を取引できるコミュニティサイト
 ​
 
 
@@ -42,6 +42,6 @@
  #### 使用素材
  
 　フリーイラストとして以下のサイトを利用
-　　- Hatchful（https://www.shopify.com/jp/tools/logo-maker）
+- Hatchful（https://www.shopify.com/jp/tools/logo-maker）
 　　
-　　- ゲームまてりあるず（https://game-materials.com/#google_vignette）# PF-submit
+- ゲームまてりあるず（https://game-materials.com/#google_vignette）# PF-submit
