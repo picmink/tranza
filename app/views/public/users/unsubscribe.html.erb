@@ -1,5 +1,20 @@
-<h3>退会お手続き</h3>
-<p>本当に退会しますか？</p>
-
-<%= link_to "はい", withdrawal_path(current_user), method: :patch, confirm: "本当に退会しますか？" %>
-<%= link_to "いいえ", edit_user_path(current_user.id) %>
+<div class="container d-flex justify-content-center p-5">
+    <div clas="row">
+        <div class="">
+            
+            <h2 class="pb-5 text-center"><strong>退会お手続き</strong></h2>
+            <p class="text-danger text-center">本当に退会しますか？</p>
+            
+            <div class="d-flex justify-content-evenly pt-4">
+                
+                <div class="px-5">
+                    <%= link_to "はい", withdrawal_path(current_user), method: :patch, confirm: "本当に退会しますか？", class: "btn btn-danger" %>
+                </div>
+                <div class="px-5">
+                    <%= link_to "いいえ", setting_path(current_user.id), class: "btn btn-info" %>
+                </div>
+            </div>
+            
+        </div>
+    </div>
+</div>

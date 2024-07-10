@@ -1,13 +1,18 @@
-<div class="containere">
-    <div class="rowd-flex">
+<div class="container">
+    <div class="row d-flex flex-column">
         <div class="col-lg">
             <table class="text-center col-11">
                 <th class="col-4"><%= image_tag(@posts.get_image(300,300)) %><br>
                 <%= link_to @posts.tags.map(&:tag_name).join(' , '), post_path(@posts.id) %></th>
                 <th class="col-0"><strong><%= @posts.stone_name %></strong></th>
                 <td class="col-4"><%= @posts.caption %></td>
-                <td class="pl-4"><%= link_to "編集", edit_post_path(@posts.id), method: :pacth, class: "btn btn-primary" %></td>
-                <td class="pr-4"><%= link_to "削除", post_path(@posts.id), method: :delete, "data-confirm" => "本当に削除しますか？", class: "btn btn-danger" %></td>
+                
+                <% if @user.id == current_user.id %>
+                    <td class="pl-4"><%= link_to "編集", edit_post_path(@posts.id), method: :pacth, class: "btn btn-primary" %></td>
+                    <td class="pr-4"><%= link_to "削除", post_path(@posts.id), method: :delete, "data-confirm" => "本当に削除しますか？", class: "btn btn-danger" %></td>
+                <% else %>
+                <% end %>
+                
                 <td><% if @posts.favorited_by?(current_user) %>
                         <p>お気に入り済</p>
                         <%= link_to post_favorites_path(@posts), method: :delete, class: "nav-link" do %>
@@ -30,27 +35,34 @@
             <p>コメント数:<%= @posts.comment_count %>件</p>
         </div>
         
-        <div class="text-center col-12 pt-4">
-            <% @posts.comments.each do |comments| %>
-                <%= image_tag comments.user.get_profile_image(50,50) %>
-                <%= comments.user.name %>
-                <%= comments.created_at.strftime('%Y/%m/%d') %><br>
-                <%= comments.comment %>
-                
-                <% if comments.user.id == current_user.id %>
-                    <%= link_to "削除", post_comment_path(comments.post_id, comments), method: :delete,  "data-confirm" => "本当に削除しますか？" %>
-                <% else %>
-                <% end %>
-                
-            <% end %>
-        </div>
-
         <div class="text-center">
             <%= form_with model: [@posts, @comment] do |f| %>
                 <%= f.text_area :comment, placeholder: "コメント", size: "50x5" %><br>
-                <%= f.submit "送信"%>
+                <div class=""><%= f.submit "送信" , class: "btn btn-success" %></div>
             <% end %>
         </div>
+        
+        <div class="text-center col-12 pt-4">
+            <table>
+                <% @posts.comments.each do |comments| %>
+                    <tr class="m-2">
+                        <td><%= comments.created_at.strftime('%Y/%m/%d') %><br></td>
+                    </tr>
+                    <tr>
+                        <td><%= image_tag comments.user.get_profile_image(50,50) %></td>
+                        <td class="pr-5"><strong><%= comments.user.name %></td>
+                        <td class="pr-3"><%= comments.comment %></td>
+                        <td>
+                            <% if comments.user.id == current_user.id %>
+                                <%= link_to "削除", post_comment_path(comments.post_id, comments), method: :delete,  "data-confirm" => "本当に削除しますか？", class: "btn btn-danger" %>
+                            <% else %>
+                            <% end %>
+                        </td>
+                    </tr>
+                <% end %>
+            </table>
+        </div>
+
     </div>
     
     
