@@ -1,0 +1,14 @@
+ja:
+    activerecord:
+        attributes:
+          user:
+            name: ニックネーム
+            
+        #   errors:
+        #     models: 
+        #       post:
+        #           　stone_name: 石の名前
+        #             caption: 説明文
+        #             image: 画像
+        #                 format: "%{attribute}: %{message}"
+        #                 blank: 必須項目です
