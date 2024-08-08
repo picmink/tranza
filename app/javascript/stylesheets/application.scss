@@ -1,11 +1,33 @@
 @use '~bootstrap/scss/bootstrap';
 
-.bg1 {
+.bg1{
   background-image: url("../images/small-minerals4.jpg");
+   position: relative;
+   z-index: 1;
+   background-color: white;
 }
+.bg1::after{
+  position: absolute;
+  opacity: 0.5;
+  z-index: 2;
+  background-color: white;
+}
+.bg1>h1{
+  position: relative;
+  z-index: 3;
+}
+.bg1>h4{
+  position: relative;
+  z-index: 3;
+}
+.bg1>.text{
+  position: relative;
+  z-index: 3;
+}
+
 .bg2 {
   background: #000;
-  opacity: 0.5;
+  opacity: 0.8;
 }
 .about{
   background-image: url("../images/emerald-cave3.jpg");

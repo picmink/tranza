@@ -1,40 +1,46 @@
 <p><%= flash[:notice] %></p>
-<div class="container-fluid text-center pt-4 pb-4 bg1">
-    <div class="row d-flex flex-column">
-        <div class="col-lg">
-            <h1 class="text-light">Welcome to Tranza(トランザ)</h1>
-        </div>
-        
-        <div class="d-flex flex-column pt-5">
-        <div class="col">
-            <p><%= link_to "アバウトページはこちらです。", about_path, class:"btn btn-light btn-sm col-lg-5" %></p>
-        </div>
-        
-        <div class="col pt-5">
-            <h4 class="text-light">会員の方はこちらからログインをお願いします。</h4>
-            <%= link_to "会員登録はこちら", new_user_registration_path, class:"btn btn-success col-lg-5" %>
-        </div>
-        
-        <div class="col pt-5">
-            <h4 class="text-light">会員登録をしていない方はこちらから会員登録をお願いします。</h4>
-            <%= link_to "ログイン", user_session_path, class:"btn btn-info col-lg-5" %>
-        </div>
-        
-        <div class="col pt-5">
-            <h4 class="text-light">ゲストの方はこちらからです。</h4>
-            <%= link_to "ゲストログイン", guest_sign_in_path, method: :post, class:"btn btn-secondary col-lg-5"  %>
-        </div>
-        </div>
-        
-        <div class="m-2 p-2 bg2">
-            <div class="col-lg">
-                <p class="ocacity-100 text-bg-primary text-light">※ゲストユーザーでログインしたままですと会員登録を行えませんので
-                </br>一度ログアウトしてから会員登録を行ってください。</p>
+<div class="bg1">
+    <div class="container-fluid text-center pt-4 pb-4">
+        <div class="row d-flex flex-column">
+            
+            <div class="opacity-1">
+                <div class="col-lg">
+                    <h1 class="text-light">Welcome to Tranza(トランザ)</h1>
+                </div>
+                
+                <div class="d-flex flex-column pt-5">
+                <div class="col">
+                    <p class="text"><%= link_to "アバウトページはこちらです。", about_path, class:"btn btn-light btn-sm col-lg-5" %></p>
+                </div>
+                
+                <div class="col pt-5">
+                    <h4 class="text-light">会員の方はこちらからログインをお願いします。</h4>
+                    <%= link_to "会員登録はこちら", new_user_registration_path, class:"btn btn-success col-lg-5" %>
+                </div>
+                
+                <div class="col pt-5">
+                    <h4 class="text-light">会員登録をしていない方はこちらから会員登録をお願いします。</h4>
+                    <%= link_to "ログイン", user_session_path, class:"btn btn-info col-lg-5" %>
+                </div>
+                
+                <div class="col pt-5">
+                    <h4 class="text-light">ゲストの方はこちらからです。</h4>
+                    <%= link_to "ゲストログイン", guest_sign_in_path, method: :post, class:"btn btn-secondary col-lg-5"  %>
+                </div>
+                </div>
+                
+                <div class="m-2 p-2 bg2">
+                    <div class="col-lg">
+                        <p class="ocacity-100 text-bg-primary text-light">※ゲストユーザーでログインしたままですと会員登録を行えませんので
+                        </br>一度ログアウトしてから会員登録を行ってください。</p>
+                    </div>
+                    
+                </div>
             </div>
             
         </div>
-        
     </div>
+
 </div>
 
 
