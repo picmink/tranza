@@ -29,6 +29,29 @@
   background: #000;
   opacity: 0.8;
 }
+.top-text {
+  color: black;
+  -webkit-text-fill-color: cyan; /* （順序に関係なく）色を上書きする */
+  -webkit-text-stroke: 2px midnightblue;
+}
+.top-text1 {
+  color: black;
+  -webkit-text-fill-color: black; /* （順序に関係なく）色を上書きする */
+  -webkit-text-stroke: 0.9px lime;
+}
+.top-text2 {
+  color: black;
+  -webkit-text-fill-color: black; /* （順序に関係なく）色を上書きする */
+  -webkit-text-stroke: 0.9px deepskyblue;
+}
+.top-text3 {
+  color: black;
+  -webkit-text-fill-color: black; /* （順序に関係なく）色を上書きする */
+  -webkit-text-stroke: 0.9px dimgray;
+}
+
+
+
 .about{
   background-image: url("../images/emerald-cave3.jpg");
 }
