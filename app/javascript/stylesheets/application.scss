@@ -55,3 +55,32 @@
 .about{
   background-image: url("../images/emerald-cave3.jpg");
 }
+.about-tranza{
+  font-family: cursive;
+}
+.about-text{
+  font-size: 20px;
+  color: black;
+  -webkit-text-fill-color: white; /* （順序に関係なく）色を上書きする */
+  -webkit-text-stroke: 0.4px crimson;
+}
+.about-text1{
+  color: black;
+  -webkit-text-fill-color: white; /* （順序に関係なく）色を上書きする */
+  -webkit-text-stroke: 0.5px magenta;
+}
+.about-text1-2{
+  color: black;
+  -webkit-text-fill-color: white; /* （順序に関係なく）色を上書きする */
+  -webkit-text-stroke: 0.5px magenta;
+}
+.about-text1-3{
+  color: black;
+  -webkit-text-fill-color: white; /* （順序に関係なく）色を上書きする */
+  -webkit-text-stroke: 0.5px magenta;
+}
+.about-text2{
+  color: black;
+  -webkit-text-fill-color: black; /* （順序に関係なく）色を上書きする */
+  -webkit-text-stroke: 0.3px mediumblue;
+}
